@@ -35,7 +35,7 @@ class Civil_Footnotes {
 		global $post;
 
 		// Check for and setup the starting number
-		$start_number = ( preg_match( '|<!\-\-startnum=(\d+)\-\->|', $data, $start_number_array ) == 1 ) ?
+		$start_number = ( preg_match( '|<!\-\-startnum=(\d+)\-\->|', $data, $start_number_array ) === 1 ) ?
 			$start_number_array[1] :
 			1;
 
@@ -53,7 +53,7 @@ class Civil_Footnotes {
 		// Create 'em
 		for ( $i = 0; $i < count( $identifiers ); $i++ ) {
 			// Look for ref: and replace in identifiers array.
-			if ( substr( $identifiers[ $i ][2], 0, 4 ) == 'ref:' ) {
+			if ( substr( $identifiers[ $i ][2], 0, 4 ) === 'ref:' ) {
 				$ref                       = (int) substr( $identifiers[ $i ][2], 4 );
 				$identifiers[ $i ]['text'] = $identifiers[ $ref - 1 ][2];
 			} else {
@@ -86,7 +86,7 @@ class Civil_Footnotes {
 		$datanote = ''; // Bugfix submitted by Greg Sullivan
 		foreach ( $identifiers as $key => $value ) {
 
-			$id_num = ( $style == 'decimal' ) ?
+			$id_num = ( $style === 'decimal' ) ?
 				$value['use_footnote'] + $start_number :
 				$this->convert_num( $value['use_footnote'] + $start_number, $style, count( $footnotes ) );
 
@@ -115,7 +115,7 @@ class Civil_Footnotes {
 		// Create the footnotes
 		foreach ( $footnotes as $key => $value ) {
 			$data = $data . '<hr class="footnotes"><ol class="footnotes"'; // Before the footnotes
-			if ( $start_number != '1' ) {
+			if ( $start_number !== '1' ) {
 				$data = $data . ' start="' . $start_number . '"';
 			}
 			$data = $data . '>';
