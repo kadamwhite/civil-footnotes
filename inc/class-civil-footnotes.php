@@ -86,7 +86,7 @@ class Civil_Footnotes {
 		$datanote = ''; // Bugfix submitted by Greg Sullivan
 		foreach ( $identifiers as $key => $value ) {
 
-			$id_num = ( $style === 'decimal' ) ?
+			$id_num = ( 'decimal' === $style ) ?
 				$value['use_footnote'] + $start_number :
 				$this->convert_num( $value['use_footnote'] + $start_number, $style, count( $footnotes ) );
 
@@ -115,7 +115,7 @@ class Civil_Footnotes {
 		// Create the footnotes
 		foreach ( $footnotes as $key => $value ) {
 			$data = $data . '<hr class="footnotes"><ol class="footnotes"'; // Before the footnotes
-			if ( $start_number !== '1' ) {
+			if ( '1' !== $start_number ) {
 				$data = $data . ' start="' . $start_number . '"';
 			}
 			$data = $data . '>';
