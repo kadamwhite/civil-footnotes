@@ -51,7 +51,8 @@ class Civil_Footnotes {
 		$style = 'decimal';
 
 		// Create 'em
-		for ( $i = 0; $i < count( $identifiers ); $i++ ) {
+		$identifier_count = count( $identifiers );
+		for ( $i = 0; $i < $identifier_count; $i++ ) {
 			// Look for ref: and replace in identifiers array.
 			if ( substr( $identifiers[ $i ][2], 0, 4 ) === 'ref:' ) {
 				$ref                       = (int) substr( $identifiers[ $i ][2], 4 );
