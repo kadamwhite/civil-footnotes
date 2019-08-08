@@ -2,7 +2,7 @@
 /**
  * Encapsulate footnotes in a class
  */
-class swas_wp_footnotes {
+class Civil_Footnotes {
 	var $current_options;
 	var $default_options;
 
