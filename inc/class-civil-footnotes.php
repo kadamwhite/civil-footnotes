@@ -3,13 +3,13 @@
  * Encapsulate footnotes in a class
  */
 class Civil_Footnotes {
-	var $current_options;
-	var $default_options;
+	public $current_options;
+	public $default_options;
 
 	/**
 	 * Constructor.
 	 */
-	function __construct() {
+	public function __construct() {
 		// Define the implemented option styles
 		$this->styles = array(
 			'decimal'              => '1,2...10',
@@ -31,7 +31,7 @@ class Civil_Footnotes {
 	 * @param $data string The content of the post.
 	 * @return string The new content with footnotes generated.
 	 */
-	function process( $data ) {
+	public function process( $data ) {
 		global $post;
 
 		// Check for and setup the starting number
@@ -126,7 +126,7 @@ class Civil_Footnotes {
 		}
 	}
 
-	function upgrade_post( $data ) {
+	public function upgrade_post( $data ) {
 		$data = str_replace( '<footnote>', WP_FOOTNOTES_OPEN, $data );
 		$data = str_replace( '</footnote>', WP_FOOTNOTES_CLOSE, $data );
 		return $data;
