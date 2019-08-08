@@ -40,7 +40,7 @@ class Civil_Footnotes {
 			1;
 
 		// Regex extraction of all footnotes (or return if there are none)
-		if ( ! preg_match_all( '/(' . preg_quote( WP_FOOTNOTES_OPEN ) . '|<footnote>)(.*)(' . preg_quote( WP_FOOTNOTES_CLOSE ) . '|<\/footnote>)/Us', $data, $identifiers, PREG_SET_ORDER ) ) {
+		if ( ! preg_match_all( '/(' . preg_quote( WP_FOOTNOTES_OPEN, '/' ) . '|<footnote>)(.*)(' . preg_quote( WP_FOOTNOTES_CLOSE, '/' ) . '|<\/footnote>)/Us', $data, $identifiers, PREG_SET_ORDER ) ) {
 			return $data;
 		}
 
