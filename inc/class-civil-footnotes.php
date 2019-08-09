@@ -75,7 +75,13 @@ class Civil_Footnotes {
 			$id_id      = 'rf' . $id_num . '-' . $post->ID;
 			$id_href    = ( ( $use_full_link ) ? get_permalink( $post->ID ) : '' ) . '#fn' . $id_num . '-' . $post->ID;
 			$id_title   = str_replace( '"', '&quot;', htmlentities( html_entity_decode( wp_strip_all_tags( $value['text'] ), ENT_QUOTES, 'UTF-8' ), ENT_QUOTES, 'UTF-8' ) );
-			$id_replace = '<sup id="' . $id_id . '"><a href="' . $id_href . '" title="' . $id_title . '" rel="footnote">' . $id_num . '</a></sup>';
+			$id_replace = sprintf(
+				'<sup id="%1$d"><a href="%2$s" title="%3$s" rel="footnote">%4$d</a></sup>',
+				esc_attr( $id_id ),
+				esc_attr( $id_href ),
+				esc_attr( $id_title ),
+				esc_html( $id_num )
+			);
 
 			if ( $display ) {
 				$data = substr_replace( $data, $id_replace, strpos( $data, $value[0] ), strlen( $value[0] ) );
