@@ -15,5 +15,5 @@ define( 'WP_FOOTNOTES_OPEN', ' ((' );
 define( 'WP_FOOTNOTES_CLOSE', '))' );
 define( 'WP_FOOTNOTES_VERSION', '1.3.1' );
 
-require_once plugin_dir_path( __FILE__ ) . 'inc/class-civil-footnotes.php';
+require_once plugin_dir_path( __FILE__ ) . 'inc/civil-footnotes.php';
 Civil_Footnotes\setup();
