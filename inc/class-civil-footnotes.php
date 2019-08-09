@@ -140,10 +140,4 @@ class Civil_Footnotes {
 			return $data;
 		}
 	}
-
-	public function upgrade_post( $data ) {
-		$data = str_replace( '<footnote>', WP_FOOTNOTES_OPEN, $data );
-		$data = str_replace( '</footnote>', WP_FOOTNOTES_CLOSE, $data );
-		return $data;
-	}
 }
