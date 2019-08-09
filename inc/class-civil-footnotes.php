@@ -105,12 +105,26 @@ class Civil_Footnotes {
 			// Display the footnotes (here is where you can change the output)
 
 			// Create each footnote
-			$datanote = $datanote . '<li id="fn' . $id_num . '-' . $post->ID . '">'; // You can add a class to the list item
-			$datanote = $datanote . '<p>'; // Before the footnote
-			$datanote = $datanote . $value['text'] . '&nbsp;<a href="#' . $id_id . '"'; // The footnote (don't change this)
-			$datanote = $datanote . ' class="backlink" title="Jump back to footnote ' . $id_num . ' in the text.">'; // You can change the class or hover text
-			$datanote = $datanote . '&#8617;'; // The backlink character (↩)... &#8626 (↲) is another common one
-			$datanote = $datanote . '</a></p></li>'; // After the footnote
+			$datanote = $datanote . sprintf(
+				'<li id="fn%1$d-%2$d">' .
+				'<p>%3$s&nbsp;' .
+				'<a href="#%4$s" class="backlink" title="%5$s">&#8617;</a>' .
+				'</p></li>',
+				// %1$d: Number of the footnote being rendered (1-indexed).
+				esc_attr( $id_num ),
+				// %2$d: ID of the post being rendered.
+				$post->ID,
+				// %3$s: Footnote content.
+				esc_html( $value['text'] ),
+				// %4$s: HTML ID attribute of the footnote being rendered.
+				esc_attr( $id_id ),
+				// %5$s: User-facing messaging for the return link.
+				sprintf(
+					/* translators: %d: The number of the footnote to which to return. */
+					__( 'Return to footnote %d.', 'civil-footnotes' ),
+					esc_attr( $id_num )
+				)
+			);
 		}
 
 		// Create the footnotes
