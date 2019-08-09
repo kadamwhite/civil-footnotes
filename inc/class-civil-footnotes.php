@@ -3,24 +3,10 @@
  * Encapsulate footnotes in a class
  */
 class Civil_Footnotes {
-	public $current_options;
-	public $default_options;
-
 	/**
 	 * Constructor.
 	 */
 	public function __construct() {
-		// Define the implemented option styles
-		$this->styles = array(
-			'decimal'              => '1,2...10',
-			'decimal-leading-zero' => '01, 02...10',
-			'lower-alpha'          => 'a,b...j',
-			'upper-alpha'          => 'A,B...J',
-			'lower-roman'          => 'i,ii...x',
-			'upper-roman'          => 'I,II...X',
-			'symbol'               => 'Symbol',
-		);
-
 		// Hook me up
 		add_action( 'the_content', array( $this, 'process' ), 11 );
 	}
@@ -47,8 +33,6 @@ class Civil_Footnotes {
 		$display = true;
 
 		$footnotes = array();
-
-		$style = 'decimal';
 
 		// Create 'em
 		$identifier_count = count( $identifiers );
@@ -87,10 +71,7 @@ class Civil_Footnotes {
 		$datanote = ''; // Bugfix submitted by Greg Sullivan
 		foreach ( $identifiers as $key => $value ) {
 
-			$id_num = ( 'decimal' === $style ) ?
-				$value['use_footnote'] + $start_number :
-				$this->convert_num( $value['use_footnote'] + $start_number, $style, count( $footnotes ) );
-
+			$id_num     = $value['use_footnote'] + $start_number;
 			$id_id      = 'rf' . $id_num . '-' . $post->ID;
 			$id_href    = ( ( $use_full_link ) ? get_permalink( $post->ID ) : '' ) . '#fn' . $id_num . '-' . $post->ID;
 			$id_title   = str_replace( '"', '&quot;', htmlentities( html_entity_decode( wp_strip_all_tags( $value['text'] ), ENT_QUOTES, 'UTF-8' ), ENT_QUOTES, 'UTF-8' ) );
