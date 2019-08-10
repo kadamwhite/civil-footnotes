@@ -18,20 +18,20 @@ function setup() {
 /**
  * Searches the text and extracts footnotes.
  * Adds the identifier links and creats footnotes list.
- * @param $data string The content of the post.
+ * @param string $content The content of the post.
  * @return string The new content with footnotes generated.
  */
-function process_footnote( $data ) {
+function process_footnote( $content ) {
 	global $post;
 
 	// Check for and setup the starting number
-	$start_number = ( preg_match( '|<!\-\-startnum=(\d+)\-\->|', $data, $start_number_array ) === 1 ) ?
+	$start_number = ( preg_match( '|<!\-\-startnum=(\d+)\-\->|', $content, $start_number_array ) === 1 ) ?
 		$start_number_array[1] :
 		1;
 
 	// Regex extraction of all footnotes (or return if there are none)
-	if ( ! preg_match_all( '/(' . preg_quote( WP_FOOTNOTES_OPEN, '/' ) . '|<footnote>)(.*)(' . preg_quote( WP_FOOTNOTES_CLOSE, '/' ) . '|<\/footnote>)/Us', $data, $identifiers, PREG_SET_ORDER ) ) {
-		return $data;
+	if ( ! preg_match_all( '/(' . preg_quote( WP_FOOTNOTES_OPEN, '/' ) . '|<footnote>)(.*)(' . preg_quote( WP_FOOTNOTES_CLOSE, '/' ) . '|<\/footnote>)/Us', $content, $identifiers, PREG_SET_ORDER ) ) {
+		return $content;
 	}
 
 	$footnotes = array();
@@ -85,7 +85,7 @@ function process_footnote( $data ) {
 			esc_html( $id_num )
 		);
 
-		$data = substr_replace( $data, $id_replace, strpos( $data, $value[0] ), strlen( $value[0] ) );
+		$content = substr_replace( $content, $id_replace, strpos( $content, $value[0] ), strlen( $value[0] ) );
 
 		// Display the footnotes (here is where you can change the output)
 
@@ -114,14 +114,14 @@ function process_footnote( $data ) {
 
 	// Create the footnotes
 	foreach ( $footnotes as $key => $value ) {
-		$data = $data . '<hr class="footnotes"><ol class="footnotes"'; // Before the footnotes
+		$content = $content . '<hr class="footnotes"><ol class="footnotes"'; // Before the footnotes
 		if ( '1' !== $start_number ) {
-			$data = $data . ' start="' . $start_number . '"';
+			$content = $content . ' start="' . $start_number . '"';
 		}
-		$data = $data . '>';
-		$data = $data . $datanote; // Don't change this
-		$data = $data . '</ol>'; // After the footnotes
+		$content = $content . '>';
+		$content = $content . $datanote; // Don't change this
+		$content = $content . '</ol>'; // After the footnotes
 
-		return $data;
+		return $content;
 	}
 }
