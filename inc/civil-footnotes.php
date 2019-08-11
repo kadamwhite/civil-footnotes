@@ -26,11 +26,6 @@ function setup() {
 function process_footnote( $content ) {
 	global $post;
 
-	// Check for and setup the starting number
-	$start_number = ( preg_match( '|<!\-\-startnum=(\d+)\-\->|', $content, $start_number_array ) === 1 ) ?
-		$start_number_array[1] :
-		1;
-
 	// Regex extraction of all footnotes (or return if there are none)
 	if ( ! preg_match_all(
 		'/(' . preg_quote( WP_FOOTNOTES_OPEN, '/' ) . '|<footnote>)(.*)(' . preg_quote( WP_FOOTNOTES_CLOSE, '/' ) . '|<\/footnote>)/Us',
@@ -80,7 +75,7 @@ function process_footnote( $content ) {
 	$datanote = ''; // Bugfix submitted by Greg Sullivan
 	foreach ( $identifiers as $key => $value ) {
 
-		$id_num     = $value['use_footnote'] + $start_number;
+		$id_num     = $value['use_footnote'] + 1;
 		$id_id      = 'rf' . $id_num . '-' . $post->ID;
 		$id_href    = ( ( $use_full_link ) ? get_permalink( $post->ID ) : '' ) . '#fn' . $id_num . '-' . $post->ID;
 		$id_title   = str_replace( '"', '&quot;', htmlentities( html_entity_decode( wp_strip_all_tags( $value['text'] ), ENT_QUOTES, 'UTF-8' ), ENT_QUOTES, 'UTF-8' ) );
@@ -120,15 +115,8 @@ function process_footnote( $content ) {
 	}
 
 	// Create the footnotes
-	foreach ( $footnotes as $key => $value ) {
-		$content = $content . '<hr class="footnotes"><ol class="footnotes"'; // Before the footnotes
-		if ( '1' !== $start_number ) {
-			$content = $content . ' start="' . $start_number . '"';
-		}
-		$content = $content . '>';
-		$content = $content . $datanote; // Don't change this
-		$content = $content . '</ol>'; // After the footnotes
-
-		return $content;
-	}
+	return $content . sprintf(
+		'<hr class="footnotes"><ol class="footnotes">%s</ol>',
+		$datanote
+	);
 }
