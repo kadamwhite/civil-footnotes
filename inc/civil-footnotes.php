@@ -5,6 +5,8 @@
 
 namespace Civil_Footnotes;
 
+use Civil_Footnotes\Formats;
+
 /**
  * Connect namespace methods to WordPress hooks.
  *
@@ -83,11 +85,11 @@ function process_footnote( $content ) {
 		$id_href    = ( ( $use_full_link ) ? get_permalink( $post->ID ) : '' ) . '#fn' . $id_num . '-' . $post->ID;
 		$id_title   = str_replace( '"', '&quot;', htmlentities( html_entity_decode( wp_strip_all_tags( $value['text'] ), ENT_QUOTES, 'UTF-8' ), ENT_QUOTES, 'UTF-8' ) );
 		$id_replace = sprintf(
-			'<sup id="%1$s"><a href="%2$s" title="%3$s" rel="footnote">%4$d</a></sup>',
+			'<sup id="%1$s"><a href="%2$s" title="%3$s" rel="footnote">%4$s</a></sup>',
 			esc_attr( $id_id ),
 			esc_attr( $id_href ),
 			esc_attr( $id_title ),
-			esc_html( $id_num )
+			esc_html( Formats\format( $id_num ) )
 		);
 
 		$content = substr_replace( $content, $id_replace, strpos( $content, $value[0] ), strlen( $value[0] ) );

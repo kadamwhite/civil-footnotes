@@ -7,6 +7,12 @@ use PHPUnit\Framework\TestCase;
 use Civil_Footnotes\Formats;
 use function Civil_Footnotes\Formats\int_to_roman;
 
+if ( ! function_exists( 'apply_filters' ) ) {
+	function apply_filters( $filter_name, $default, $arg1 ) {
+		return $default;
+	}
+}
+
 final class Test_Formats extends TestCase {
 	public function testIntToRoman() : void {
 		$this->assertEquals( Formats\int_to_roman( 1 ), 'I' );
@@ -32,6 +38,8 @@ final class Test_Formats extends TestCase {
 		$this->assertEquals( Formats\int_to_roman( 300 ), 'CCC' );
 		$this->assertEquals( Formats\int_to_roman( 400 ), 'CD' );
 		$this->assertEquals( Formats\int_to_roman( 406 ), 'CDVI' );
+		$this->assertEquals( Formats\int_to_roman( -1 ), '-1' );
+		$this->assertEquals( Formats\int_to_roman( 40000 ), '40000' );
 	}
 
 	public function testIntToSymbol() : void {
@@ -40,5 +48,7 @@ final class Test_Formats extends TestCase {
 		$this->assertEquals( Formats\int_to_symbol( 3 ), '&Dagger;' );
 		$this->assertEquals( Formats\int_to_symbol( 4 ), '&sect;' );
 		$this->assertEquals( Formats\int_to_symbol( 9 ), '#' );
+		$this->assertEquals( Formats\int_to_roman( -1 ), '-1' );
+		$this->assertEquals( Formats\int_to_symbol( 90 ), '90' );
 	}
 }

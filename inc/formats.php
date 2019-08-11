@@ -13,13 +13,42 @@ namespace Civil_Footnotes\Formats;
  */
 function styles() : array {
 	return [
-		'decimal'     => '1,2...',
-		'lower-alpha' => 'a,b...',
-		'upper-alpha' => 'A,B...',
-		'lower-roman' => 'i,ii...',
-		'upper-roman' => 'I,II...',
-		'symbol'      => '*,†...',
+		// @TODO: Add lower-alpha & upper-alpha
+		'decimal'     => 'decimal',
+		'lower-roman' => 'lower-roman',
+		'upper-roman' => 'upper-roman',
+		'symbol'      => 'symbol',
 	];
+}
+/**
+ * Convert an integer to the selected format. A theme may opt in to a specific
+ * format by hooking into the footnotes_style filter.
+ *
+ * @param integer $num
+ * @return string
+ */
+function format( int $num ) : string {
+	/**
+	 * Filters the style to be used when rendering footnote markers.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string $style  The string name of the style to use.
+	 * @param array  $styles The array of viable style names as a self-referential dictionary.
+	 */
+	$selected_style = apply_filters( 'footnotes_style', 'decimal', styles() );
+
+	switch ( $selected_style ) {
+		case 'upper-roman':
+			return int_to_roman( $num );
+		case 'lower-roman':
+			return strtolower( int_to_roman( $num ) );
+		case 'symbol':
+			return int_to_symbol( $num );
+		case 'decimal':
+		default:
+			return strval( $num );
+	}
 }
 
 /**
