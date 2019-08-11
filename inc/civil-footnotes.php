@@ -26,9 +26,15 @@ function setup() {
 function process_footnote( $content ) {
 	global $post;
 
+	$footnote_pattern = sprintf(
+		'/(?:%s|<footnote>)(.*)(?:%s|<\/footnote>)/Us',
+		preg_quote( WP_FOOTNOTES_OPEN, '/' ),
+		preg_quote( WP_FOOTNOTES_CLOSE, '/' )
+	);
+
 	// Regex extraction of all footnotes (or return if there are none)
 	if ( ! preg_match_all(
-		'/(' . preg_quote( WP_FOOTNOTES_OPEN, '/' ) . '|<footnote>)(.*)(' . preg_quote( WP_FOOTNOTES_CLOSE, '/' ) . '|<\/footnote>)/Us',
+		$footnote_pattern,
 		$content,
 		$identifiers,
 		PREG_SET_ORDER
@@ -42,11 +48,11 @@ function process_footnote( $content ) {
 	$identifier_count = count( $identifiers );
 	for ( $i = 0; $i < $identifier_count; $i++ ) {
 		// Look for ref: and replace in identifiers array.
-		if ( substr( $identifiers[ $i ][2], 0, 4 ) === 'ref:' ) {
-			$ref                       = (int) substr( $identifiers[ $i ][2], 4 );
-			$identifiers[ $i ]['text'] = $identifiers[ $ref - 1 ][2];
+		if ( substr( $identifiers[ $i ][1], 0, 4 ) === 'ref:' ) {
+			$ref                       = (int) substr( $identifiers[ $i ][1], 4 );
+			$identifiers[ $i ]['text'] = $identifiers[ $ref - 1 ][1];
 		} else {
-			$identifiers[ $i ]['text'] = $identifiers[ $i ][2];
+			$identifiers[ $i ]['text'] = $identifiers[ $i ][1];
 		}
 
 		if ( ! isset( $identifiers[ $i ]['use_footnote'] ) ) {
