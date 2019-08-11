@@ -26,15 +26,9 @@ function setup() {
 function process_footnote( $content ) {
 	global $post;
 
-	$footnote_pattern = sprintf(
-		'/(?:%s|<footnote>)(.*)(?:%s|<\/footnote>)/Us',
-		preg_quote( WP_FOOTNOTES_OPEN, '/' ),
-		preg_quote( WP_FOOTNOTES_CLOSE, '/' )
-	);
-
 	// Regex extraction of all footnotes (or return if there are none)
 	if ( ! preg_match_all(
-		$footnote_pattern,
+		'/(?:\(\(|<footnote>)(.*)(?:\)\)|<\/footnote>)/Us',
 		$content,
 		$identifiers,
 		PREG_SET_ORDER
