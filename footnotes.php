@@ -11,7 +11,7 @@ Author: <a href="https://defomicron.net/colophon">Austin Sweeney</a>
 // “Display the footnotes” section near the end of this file.
 
 // Some important constants
-define( 'WP_FOOTNOTES_VERSION', '1.3.1' );
+define( 'CIVIL_FOOTNOTES_VERSION', '1.3.1' );
 
 require_once plugin_dir_path( __FILE__ ) . 'inc/civil-footnotes.php';
 require_once plugin_dir_path( __FILE__ ) . 'inc/formats.php';

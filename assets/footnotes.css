@@ -1,0 +1,31 @@
+ol.footnotes.symbols {
+	list-style-type: decimal;
+	/*
+	Base64 note for plugin reviewers: This is a transparent gif, encoded &
+	inlined for performance. Cross-reference with the CSS in the CSS Tricks
+	article https://css-tricks.com/ordered-lists-unicode-symbols/ for
+	reassurance nothing untoward is happening here. <3
+	*/
+	list-style-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
+}
+
+ol.footnotes.symbols li p:before {
+	content: attr( data-symbol );
+	position: absolute;
+	display: inline-block;
+	margin-right: 1ch;
+	margin-left: -2ch;
+	font-size: 0.75em;
+	vertical-align: super;
+}
+
+/*
+Increase link hit target size. Useful always, but symbols are smaller
+than their corresponding alphanumeric equivalents, and it is easier
+to only enqueue this stylesheet when the majority of its rules apply.
+*/
+a[rel="footnote"] {
+	display: inline-block;
+	padding: 2px 4px;
+	margin: -2px -4px;
+}

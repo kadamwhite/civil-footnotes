@@ -13,8 +13,20 @@ use Civil_Footnotes\Formats;
  * @return void
  */
 function setup() {
-	// Hook me up
 	add_action( 'the_content', __NAMESPACE__ . '\\process_footnote', 11 );
+	add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\maybe_enqueue_symbols_css' );
+}
+
+function maybe_enqueue_symbols_css() {
+	if ( 'symbol' !== Formats\get_style() ) {
+		return;
+	}
+
+	// Enqueue the stylesheet that adds support for footnote symbol markers.
+	wp_enqueue_style(
+		'civil-footnotes',
+		plugins_url( 'assets/footnotes.css', dirname( __FILE__ ) )
+	);
 }
 
 /**
@@ -45,8 +57,8 @@ function render_footnote_li_tag( $footnote ) : string {
 	$using_symbols = 'symbol' === Formats\get_style();
 
 	return sprintf(
-		'<li id="%1$s" %2$s>' .
-		'<p>%3$s' .
+		'<li id="%1$s">' .
+		'<p %2$s>%3$s' .
 		'&nbsp;<a href="%4$s" class="backlink" title="%5$s">&#8617;</a>' .
 		'</p></li>',
 		// %1$s: HTML ID attribute of the footnote <li> being rendered.
@@ -139,9 +151,10 @@ function process_footnote( $content ) {
 	);
 
 	// Create the footnotes.
-	$using_symbols = 'symbols' === Formats\get_style();
+	$using_symbols = 'symbol' === Formats\get_style();
 	return $mutated_content . sprintf(
-		'<hr class="footnotes"><ol class="footnotes">%s</ol>',
+		'<hr class="footnotes"><ol class="%s">%s</ol>',
+		$using_symbols ? 'footnotes symbols' : 'footnotes',
 		$footnote_li_tags
 	);
 }
