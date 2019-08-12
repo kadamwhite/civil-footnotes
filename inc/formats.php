@@ -20,14 +20,14 @@ function styles() : array {
 		'symbol'      => 'symbol',
 	];
 }
+
 /**
- * Convert an integer to the selected format. A theme may opt in to a specific
- * format by hooking into the footnotes_style filter.
+ * Determine the style to use when rendering footnote indicators & list items.
+ * Themes may opt in to a format by hooking into the footnotes_style filter.
  *
- * @param integer $num
  * @return string
  */
-function format( int $num ) : string {
+function get_style() : string {
 	/**
 	 * Filters the style to be used when rendering footnote markers.
 	 *
@@ -36,7 +36,18 @@ function format( int $num ) : string {
 	 * @param string $style  The string name of the style to use.
 	 * @param array  $styles The array of viable style names as a self-referential dictionary.
 	 */
-	$selected_style = apply_filters( 'footnotes_style', 'decimal', styles() );
+	return apply_filters( 'footnotes_style', 'symbol', styles() );
+}
+
+/**
+ * Convert an integer to the selected format. A theme may opt in to a specific
+ * format by hooking into the footnotes_style filter.
+ *
+ * @param integer $num
+ * @return string
+ */
+function format( int $num ) : string {
+	$selected_style = get_style();
 
 	switch ( $selected_style ) {
 		case 'upper-roman':
@@ -59,7 +70,9 @@ function format( int $num ) : string {
  * @return string The converted numeral string, or the original integer as a string.
  */
 function int_to_roman( int $num ) : string {
-	$result           = '';
+	$result = '';
+
+	// Define the mapping of Roman numerals to corresponding integers.
 	$numerals_mapping = [
 		'M'  => 1000,
 		'CM' => 900,

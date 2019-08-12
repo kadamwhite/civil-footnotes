@@ -18,6 +18,55 @@ function setup() {
 }
 
 /**
+ * Render the <sup> tag for a given footnote object.
+ *
+ * @param array $footnote Footnote associative data array.
+ * @return string Rendered <sup> tag.
+ */
+function render_footnote_sup_tag( $footnote ) : string {
+	return sprintf(
+		'<sup id="%1$s"><a href="%2$s" title="%3$s" rel="footnote">%4$s</a></sup>',
+		esc_attr( $footnote['ref_id'] ),
+		esc_attr( $footnote['fn_href'] ),
+		esc_attr( $footnote['content'] ),
+		esc_html( $footnote['symbol'] )
+	);
+}
+
+/**
+ * Render the <li> tag for a given footnote object.
+ *
+ * @param array $footnote Footnote associative data array.
+ * @return string Rendered <li> tag.
+ */
+function render_footnote_li_tag( $footnote ) : string {
+	// If we are using symbols, we want to add a data-attribute to each <li>
+	// which can be used to control the marker rendered :before the element.
+	$using_symbols = 'symbol' === Formats\get_style();
+
+	return sprintf(
+		'<li id="%1$s" %2$s>' .
+		'<p>%3$s' .
+		'&nbsp;<a href="%4$s" class="backlink" title="%5$s">&#8617;</a>' .
+		'</p></li>',
+		// %1$s: HTML ID attribute of the footnote <li> being rendered.
+		esc_attr( $footnote['fn_id'] ),
+		// %2$s: Maybe a data-symbol attribute, maybe the empty string.
+		$using_symbols ? sprintf( 'data-symbol="%s"', esc_attr( $footnote['symbol'] ) ) : '',
+		// %3$s: Footnote content.
+		esc_html( $footnote['content'] ),
+		// %4$s: HTML href attribute pointing back to the footnote <sup> tag.
+		esc_html( $footnote['ref_href'] ),
+		// %5$s: User-facing messaging for the return link.
+		sprintf(
+			/* translators: %s: The symbol or number of the footnote to which to return. */
+			__( 'Return to footnote %s.', 'civil-footnotes' ),
+			esc_attr( $footnote['symbol'] )
+		)
+	);
+}
+
+/**
  * Searches the text and extracts footnotes.
  * Adds the identifier links and creats footnotes list.
  * @param string $content The content of the post.
@@ -42,7 +91,7 @@ function process_footnote( $content ) {
 		 * @param array $match The regex match.
 		 * @return string The replacement string.
 		 */
-		function( $match ) use ( &$footnotes, &$footnote_number, $permalink, $post_id ) {
+		function( $match ) use ( &$footnotes, &$footnote_number, $permalink, $post_id ) : string {
 			// Store footnote content so we can generate the list at the end of the post.
 			$footnote = [
 				'content' => $match[1],
@@ -63,13 +112,7 @@ function process_footnote( $content ) {
 			$footnote_number++;
 
 			// Replace the footnote placeholder with the superscript indicator.
-			return sprintf(
-				'<sup id="%1$s"><a href="%2$s" title="%3$s" rel="footnote">%4$s</a></sup>',
-				esc_attr( $footnote['ref_id'] ),
-				esc_attr( $footnote['fn_href'] ),
-				esc_attr( $footnote['content'] ),
-				esc_html( $footnote['symbol'] )
-			);
+			return render_footnote_sup_tag( $footnote );
 		},
 		$content
 	);
@@ -79,7 +122,7 @@ function process_footnote( $content ) {
 		return $content;
 	}
 
-	// Create 'em
+	// Render footnotes list content.
 	$footnote_li_tags = array_reduce(
 		$footnotes,
 		/**
@@ -90,29 +133,13 @@ function process_footnote( $content ) {
 		 * @return string A rendered <li> string for this footnote.
 		 */
 		function( string $li_tags, array $footnote ) : string {
-			return $li_tags . sprintf(
-				'<li id="%1$s">' .
-				'<p>%2$s' .
-				'&nbsp;<a href="%3$s" class="backlink" title="%4$s">&#8617;</a>' .
-				'</p></li>',
-				// %1$s: HTML ID attribute of the footnote <li> being rendered.
-				esc_attr( $footnote['fn_id'] ),
-				// %2$s: Footnote content.
-				esc_html( $footnote['content'] ),
-				// %3$s: HTML href attribute pointing back to the footnote <sup> tag.
-				esc_html( $footnote['ref_href'] ),
-				// %4$s: User-facing messaging for the return link.
-				sprintf(
-					/* translators: %s: The symbol or number of the footnote to which to return. */
-					__( 'Return to footnote %s.', 'civil-footnotes' ),
-					esc_attr( $footnote['symbol'] )
-				)
-			);
+			return $li_tags . render_footnote_li_tag( $footnote );
 		},
 		''
 	);
 
-	// Create the footnotes
+	// Create the footnotes.
+	$using_symbols = 'symbols' === Formats\get_style();
 	return $mutated_content . sprintf(
 		'<hr class="footnotes"><ol class="footnotes">%s</ol>',
 		$footnote_li_tags
