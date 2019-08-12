@@ -13,10 +13,13 @@ namespace Civil_Footnotes\Formats;
  */
 function styles() : array {
 	return [
-		// @TODO: Add lower-alpha & upper-alpha
 		'decimal'     => 'decimal',
 		'lower-roman' => 'lower-roman',
 		'upper-roman' => 'upper-roman',
+		'lower-alpha' => 'lower-alpha',
+		'upper-alpha' => 'upper-alpha',
+		'lower-greek' => 'lower-greek',
+		'upper-greek' => 'upper-greek',
 		'symbol'      => 'symbol',
 	];
 }
@@ -54,12 +57,134 @@ function format( int $num ) : string {
 			return int_to_roman( $num );
 		case 'lower-roman':
 			return strtolower( int_to_roman( $num ) );
+		case 'upper-alpha':
+			return int_to_alpha( $num );
+		case 'lower-alpha':
+			return strtolower( int_to_alpha( $num ) );
+		case 'upper-greek':
+			return int_to_upper_greek( $num );
+		case 'lower-greek':
+			return int_to_lower_greek( $num );
 		case 'symbol':
 			return int_to_symbol( $num );
 		case 'decimal':
 		default:
 			return strval( $num );
 	}
+}
+
+/**
+ * For any arbitrary alphabet (defaulting to upper-case Roman letters), convert
+ * an integer into its corresponding character. Values above the length of the
+ * alphabet will be prepended with a letter indicating sequence, e.g. 27 would
+ * become AA, etcetera.
+ *
+ * h/t https://stackoverflow.com/a/42177363
+ *
+ * @param num $num
+ * @param array $alphabet
+ * @return void
+ */
+function int_to_alpha( int $num, array $alphabet = [] ): string {
+	if ( $num < 1 ) {
+		// Out of bounds, return as-is.
+		return strval( $num );
+	}
+
+	if ( empty( $alphabet ) ) {
+		// Default to A..Z.
+		$alphabet = range( 'A', 'Z' );
+	}
+
+	$count = count( $alphabet );
+	if ( $num <= $count ) {
+			return $alphabet[ $num - 1 ];
+	}
+	$alpha = '';
+	while ( $num > 0 ) {
+		$modulo = ( $num - 1 ) % $count;
+		$alpha  = $alphabet[ $modulo ] . $alpha;
+		$num    = floor( ( ( $num - $modulo ) / $count ) );
+	}
+	return $alpha;
+}
+
+/**
+ * Convert an integer to an alphabetic representation using the lower-case
+ * greek alphabet. Corresponds to `list-style-type=lower-greek;`
+ *
+ * @param int $num Integer to convert.
+ * @return string Lower-case Greek alphabetic representation of number.
+ */
+function int_to_lower_greek( int $num ) : string {
+	return int_to_alpha(
+		$num,
+		[
+			'&alpha;',   // α
+			'&beta;',    // β
+			'&gamma;',   // γ
+			'&delta;',   // δ
+			'&epsilon;', // ε
+			'&zeta;',    // ζ
+			'&eta;',     // η
+			'&theta;',   // θ
+			'&iota;',    // ι
+			'&kappa;',   // κ
+			'&lambda;',  // λ
+			'&mu;',      // μ
+			'&nu;',      // ν
+			'&xi;',      // ξ
+			'&omicron;', // ο
+			'&pi;',      // π
+			'&rho;',     // ρ
+			'&sigma;',   // σ
+			'&tau;',     // τ
+			'&upsilon;', // υ
+			'&phi;',     // φ
+			'&chi;',     // χ
+			'&psi;',     // ψ
+			'&omega;',   // ω
+		]
+	);
+}
+
+/**
+ * Convert an integer to an alphabetic representation using the upper-case
+ * greek alphabet. Corresponds to `list-style-type=upper-greek;`
+ *
+ * @param int $num Integer to convert.
+ * @return string Upper-case Greek alphabetic representation of number.
+ */
+function int_to_upper_greek( int $num ) : string {
+	return int_to_alpha(
+		$num,
+		[
+			'&Alpha;',   // Α
+			'&Beta;',    // Β
+			'&Gamma;',   // Γ
+			'&Delta;',   // Δ
+			'&Epsilon;', // Ε
+			'&Zeta;',    // Ζ
+			'&Eta;',     // Η
+			'&Theta;',   // Θ
+			'&Iota;',    // Ι
+			'&Kappa;',   // Κ
+			'&Lambda;',  // Λ
+			'&Mu;',      // Μ
+			'&Nu;',      // Ν
+			'&Xi;',      // Ξ
+			'&Omicron;', // Ο
+			'&Pi;',      // Π
+			'&Rho;',     // Ρ
+			'&Sigma;',   // Σ
+			'&Tau;',     // Τ
+			'&Upsilon;', // Υ
+			'&Phi;',     // Φ
+			'&Chi;',     // Χ
+			'&Psi;',     // Ψ
+			'&Omega;',   // Ω
+		]
+	);
 }
 
 /**
@@ -114,22 +239,22 @@ function int_to_symbol( int $num ) : string {
 	// Ordering from Wikipedia's list of common footnote symbols, with
 	// additions for card suits & other unique characters that look really neat.
 	$symbols = [
-		'*', // *
+		'*',        // *
 		'&dagger;', // †
 		'&Dagger;', // ‡
-		'&sect;', // §
-		'&Vert;', // ‖
-		'&para;', // ¶
-		'&#8485;', // ℥
-		'&#8251;', // ※'
-		'#', // #
-		'&diams;', // ♦
+		'&sect;',   // §
+		'&Vert;',   // ‖
+		'&para;',   // ¶
+		'&#8485;',  // ℥
+		'&#8251;',  // ※
+		'#',        // #
+		'&diams;',  // ♦
 		'&hearts;', // ♥
 		'&spades;', // ♠
-		'&clubs;', // ♣
-		'&darr;', // ↓
+		'&clubs;',  // ♣
+		'&darr;',   // ↓
 		'&#10021;', // ✥
-		'&#9758;', // ☞
+		'&#9758;',  // ☞
 	];
 
 	if ( $num > count( $symbols ) || $num < 1 ) {

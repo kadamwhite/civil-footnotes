@@ -14,6 +14,31 @@ if ( ! function_exists( 'apply_filters' ) ) {
 }
 
 final class Test_Formats extends TestCase {
+	public function testIntToAlpha() : void {
+		$this->assertEquals( Formats\int_to_alpha( 1 ), 'A' );
+		$this->assertEquals( Formats\int_to_alpha( 5 ), 'E' );
+		$this->assertEquals( Formats\int_to_alpha( 13 ), 'M' );
+		$this->assertEquals( Formats\int_to_alpha( 26 ), 'Z' );
+		$this->assertEquals( Formats\int_to_alpha( 27 ), 'AA' );
+		$this->assertEquals( Formats\int_to_alpha( 702 ), 'ZZ' );
+		$this->assertEquals( Formats\int_to_alpha( 0 ), '0' );
+		$this->assertEquals( Formats\int_to_alpha( -1 ), '-1' );
+	}
+
+	public function testIntToLowerGreek() : void {
+		$this->assertEquals( Formats\int_to_lower_greek( 1 ), '&alpha;' );
+		$this->assertEquals( Formats\int_to_lower_greek( 24 ), '&omega;' );
+		$this->assertEquals( Formats\int_to_lower_greek( 25 ), '&alpha;&alpha;' );
+		$this->assertEquals( Formats\int_to_lower_greek( 600 ), '&omega;&omega;' );
+	}
+
+	public function testIntToUpperGreek() : void {
+		$this->assertEquals( Formats\int_to_upper_greek( 1 ), '&Alpha;' );
+		$this->assertEquals( Formats\int_to_upper_greek( 24 ), '&Omega;' );
+		$this->assertEquals( Formats\int_to_upper_greek( 25 ), '&Alpha;&Alpha;' );
+		$this->assertEquals( Formats\int_to_upper_greek( 600 ), '&Omega;&Omega;' );
+	}
+
 	public function testIntToRoman() : void {
 		$this->assertEquals( Formats\int_to_roman( 1 ), 'I' );
 		$this->assertEquals( Formats\int_to_roman( 2 ), 'II' );
@@ -38,6 +63,7 @@ final class Test_Formats extends TestCase {
 		$this->assertEquals( Formats\int_to_roman( 300 ), 'CCC' );
 		$this->assertEquals( Formats\int_to_roman( 400 ), 'CD' );
 		$this->assertEquals( Formats\int_to_roman( 406 ), 'CDVI' );
+		$this->assertEquals( Formats\int_to_roman( 0 ), '0' );
 		$this->assertEquals( Formats\int_to_roman( -1 ), '-1' );
 		$this->assertEquals( Formats\int_to_roman( 40000 ), '40000' );
 	}
@@ -48,7 +74,8 @@ final class Test_Formats extends TestCase {
 		$this->assertEquals( Formats\int_to_symbol( 3 ), '&Dagger;' );
 		$this->assertEquals( Formats\int_to_symbol( 4 ), '&sect;' );
 		$this->assertEquals( Formats\int_to_symbol( 9 ), '#' );
-		$this->assertEquals( Formats\int_to_roman( -1 ), '-1' );
+		$this->assertEquals( Formats\int_to_symbol( 0 ), '0' );
+		$this->assertEquals( Formats\int_to_symbol( -1 ), '-1' );
 		$this->assertEquals( Formats\int_to_symbol( 90 ), '90' );
 	}
 }

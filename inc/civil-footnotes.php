@@ -153,10 +153,11 @@ function process_footnote( $content ) {
 	);
 
 	// Create the footnotes.
-	$using_symbols = 'symbol' === Formats\get_style();
+	$selected_style = Formats\get_style();
 	return $mutated_content . sprintf(
-		'<hr class="footnotes"><ol class="%s">%s</ol>',
-		$using_symbols ? 'footnotes symbols' : 'footnotes',
+		'<hr class="footnotes"><ol class="%s" %s>%s</ol>',
+		'symbol' === $selected_style ? 'footnotes symbols' : 'footnotes',
+		'symbol' !== $selected_style ? 'style="list-style-type:' . $selected_style . '"' : '',
 		$footnote_li_tags
 	);
 }
