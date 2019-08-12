@@ -25,7 +25,9 @@ function maybe_enqueue_symbols_css() {
 	// Enqueue the stylesheet that adds support for footnote symbol markers.
 	wp_enqueue_style(
 		'civil-footnotes',
-		plugins_url( 'assets/footnotes.css', dirname( __FILE__ ) )
+		plugins_url( 'assets/footnotes.css', dirname( __FILE__ ) ),
+		[],
+		CIVIL_FOOTNOTES_VERSION
 	);
 }
 

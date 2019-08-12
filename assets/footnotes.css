@@ -1,3 +1,7 @@
+/**
+ * Implement an ordered list using unique unicode symbols, based upon
+ * https://css-tricks.com/ordered-lists-unicode-symbols/
+ */
 ol.footnotes.symbols {
 	list-style-type: decimal;
 	/*

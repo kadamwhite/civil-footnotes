@@ -36,7 +36,7 @@ function get_style() : string {
 	 * @param string $style  The string name of the style to use.
 	 * @param array  $styles The array of viable style names as a self-referential dictionary.
 	 */
-	return apply_filters( 'footnotes_style', 'symbol', styles() );
+	return apply_filters( 'footnotes_style', 'decimal', styles() );
 }
 
 /**
