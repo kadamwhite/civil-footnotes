@@ -5,8 +5,6 @@
 
 namespace Civil_Footnotes;
 
-use Civil_Footnotes\Formats;
-
 /**
  * Connect namespace methods to WordPress hooks.
  *
