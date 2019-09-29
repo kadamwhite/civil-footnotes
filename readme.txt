@@ -7,22 +7,17 @@ Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Create footnotes using a simple, easy-to-read syntax. Based on ‘WP-Footnotes’, a plugin by Simon Elvery, and Daring Fireball’s footnotes.
+Create footnotes using a simple, easy-to-read syntax.
 
 == Description ==
 
-# “Civil Footnotes is kickass. Works like a charm.” #  
-—Daniel Ignacio
+Civil Footnotes is a WordPress plugin for adding footnotes on your blog. Civil Footnotes parses your posts for notes wrapped in ((double parenthesis)), then extracts that parenthesized text into a footnote list at the end of the post.
 
-Civil Footnotes is a WordPress plugin for adding footnotes on your blog. Civil Footnotes parses your posts for notes wrapped in ((double parenthesis)), which are then reformatted as Daring Fireball-style footnotes.
+There are many solutions for managing footnotes within your WordPress website, but Civil Footnotes distinguishes itself from the rest with a simple, readable plain text syntax that works whether you're using the WordPress block editor, a Markdown editor, or the classic editor plugin.
 
-There are many solutions for footnotes on WordPress blogs, but Civil Footnotes stands above the rest. Most importantly, the syntax for creating notes is simple and very readable as plain text. The syntax works peacefully alongside Markdown.
+The majority of Civil Footnotes’s formatting is taken from Daring Fireball, which first debuted this style of footnotes [in 2005](http://daringfireball.net/2005/07/footnotes). The key difference is the addition of a `title` attribute to the footnote reference in the text. One need only hover their cursor over the reference number to read the note, eliminating two mouse clicks. For more information, visit [the plugin page](https://defomicron.net/projects/civil_footnotes) on the author’s website.
 
-The majority of Civil Footnotes’s formatting is taken from Daring Fireball, which first debuted this style of footnotes [in 2005](http://daringfireball.net/2005/07/footnotes).
-
-The key difference is the addition of a `title` attribute to the footnote reference in the text. One need only hover their cursor over the reference number to read the note, eliminating two mouse clicks. For more information, visit [the plugin page](https://defomicron.net/projects/civil_footnotes) on the author’s website.
-
-Civil Footnotes is based on [‘WP-Footnotes’](http://wordpress.org/extend/plugins/wp-footnotes/), a WordPress plugin by [Simon Elvery](http://elvery.net).
+Civil Footnotes is based on [‘WP-Footnotes’](http://wordpress.org/extend/plugins/wp-footnotes/), a WordPress plugin by [Simon Elvery](http://elvery.net). It was originally created by [Austin Sweeney](https://defomicron.net/) and is currently maintained by [K. Adam White](https://www.kadamwhite.com).
 
 == Installation ==
 
@@ -48,13 +43,13 @@ If you’re savvy, `civil-footnotes.php` is annotated with information on where 
 
 = I found a bug, how can I report it? =
 
-The best way to report a bug is directly to me via [email, Twitter, or App.net](https://defomicron.net/contact). You can also start a discussion on the [WordPress support forum](http://wordpress.org/support/plugin/civil-footnotes).
+The best way to report a bug is to [open an issue on the plugin's GitHub repository](https://github.com/kadamwhite/civil-footnotes/issues/new) explaining your problem. You can also start a discussion on the [WordPress support forum](http://wordpress.org/support/plugin/civil-footnotes).
 
-= Can I make a suggestion for a new feature? =
+= May I suggest a new feature? =
 
-You can, of course, but no guarantees. My website offers a few different ways [to contact me](https://defomicron.net/contact).
+You can, of course, but no guarantees! Civil Footnotes is deliberately lightweight and aims to remain so; if you have a suggestion, however, the best way to request a new feature is to open an issue on the project repository as described above in "I found a bug."
 
-= Licence? =
+= License? =
 
 This plugin is licensed under [the same license as WordPress](http://wordpress.org/about/license/) itself, the GPLv2 (or later).
 
