@@ -5,7 +5,6 @@ require_once dirname( __DIR__ ) . '/inc/formats.php';
 
 use PHPUnit\Framework\TestCase;
 use Civil_Footnotes\Formats;
-use function Civil_Footnotes\Formats\int_to_roman;
 
 if ( ! function_exists( 'apply_filters' ) ) {
 	function apply_filters( $filter_name, $default, $arg1 ) {
