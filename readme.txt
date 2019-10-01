@@ -89,6 +89,8 @@ This is the last version of Civil Footnotes that supports PHP 5.6.
 - Upgraded plugin for compatibility with PHP versions 7 and up
 - Introduced `footnotes_style` filter to select roman numerals, symbols, or other non-numeric footnote styles
 - Modernized & reorganized code for a more efficient footnote rendering experience
+- Temporarily removed support for de-duplicating identical footnotes.
+- Temporarily removed support for `<!--startnum=5-->` footnote number overrides.
 
 = 1.3.1 =
 
