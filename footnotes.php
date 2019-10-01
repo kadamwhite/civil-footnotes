@@ -2,15 +2,18 @@
 /*
 Plugin Name: Civil Footnotes
 Plugin URI: https://defomicron.net/projects/civil_footnotes/
-Version: 1.0
-Description: Parses and displays footnotes. Based on <a href="http://elvery.net/drzax/wordpress-footnotes-plugin">WP-Foonotes</a> by <a href="http://elvery.net">Simon Elvery</a>
+Version: 1.1
+Description: Parses and displays footnotes. Based on <a href="http://elvery.net/drzax/wordpress-footnotes-plugin">WP-Foonotes</a> by <a href="http://elvery.net">Simon Elvery</a>, and the footnote syntax pioneered by <a href="http://daringfireball.net/2005/07/footnotes">John Gruber</a>.
 Author: <a href="https://defomicron.net/colophon/">Austin Sweeney</a>
 */
 
+// If you’d like to edit the output, scroll down to the
+// “Display the footnotes” section near the end of this file.
+
 // Some important constants
-define('WP_FOOTNOTES_OPEN', " ((");  //You can change this if you really have to, but I wouldn't recommend it.
-define('WP_FOOTNOTES_CLOSE', "))");  //Same with this one.
-define('WP_FOOTNOTES_VERSION', '1.0');
+define('WP_FOOTNOTES_OPEN', " ((");
+define('WP_FOOTNOTES_CLOSE', "))");
+define('WP_FOOTNOTES_VERSION', '1.1');
 
 // Instantiate the class
 $swas_wp_footnotes = new swas_wp_footnotes();
@@ -112,17 +115,23 @@ class swas_wp_footnotes {
 			if ($display) $data = substr_replace($data, $id_replace, strpos($data,$value[0]),strlen($value[0]));
 			else $data = substr_replace($data, '', strpos($data,$value[0]),strlen($value[0]));
 
-		// Display footnotes
-			$datanote = $datanote.'<li id="fn'.$id_num.'-'.$post->ID.'"><p>';
-			$datanote = $datanote.$value['text'];
-			$datanote = $datanote.'&nbsp;<a href="#'.$id_id.'"';
+	// Display the footnotes (here is where you can change the output)
 
-			$datanote = $datanote.' class="backlink" title="Return to footnote '.$id_num.' in the text.">&#8617;</a></li>';
+		// Create each footnote
+			$datanote = $datanote.'<li id="fn'.$id_num.'-'.$post->ID.'">'; // You can add a class to the list item
+			$datanote = $datanote.'<p>'; // Before the footnote
+			$datanote = $datanote.$value['text'].'&nbsp;<a href="#'.$id_id.'"'; // The footnote (don't change this)
+			$datanote = $datanote.' class="backlink" title="Jump back to footnote '.$id_num.' in the text.">'; // You can change the class or hover text
+			$datanote = $datanote.'&#8617;'; // The backlink character (↩)... &#8626 (↲) is another common one
+			$datanote = $datanote.'</a></p></li>'; // After the footnote
 
 			}
 
+	// Create the footnotes
 		foreach ($footnotes as $key => $value) {
-			$data = $data.'<hr><ol class="footnotes">'.$datanote.'</ol>';
+			$data = $data.'<hr><ol class="footnotes">'; // Before the footnotes
+			$data = $data.$datanote; // Don't change this
+			$data = $data.'</ol>'; // After the footnotes
 
 		return $data;
 
