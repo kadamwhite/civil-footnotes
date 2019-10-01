@@ -60,6 +60,8 @@ function mytheme_use_roman_numeral_footnotes( $style, $formats ) {
 apply_filter( 'footnotes_style', 'mytheme_use_roman_numeral_footnotes', 10, 2 );
 </code></pre>
 
+All available formats are specified in the keys of this filter's `$formats` array.
+
 = I found a bug, how can I report it? =
 
 The best way to report a bug is to [open an issue on the plugin's GitHub repository](https://github.com/kadamwhite/civil-footnotes/issues/new) explaining your problem. You can also start a discussion on the [WordPress support forum](http://wordpress.org/support/plugin/civil-footnotes).
@@ -70,7 +72,7 @@ Absolutely! We cannot guarantee all feature proposals will be accepted; Civil Fo
 
 = Where can I download archived releases of Civil Footnotes? =
 
-From the [main plugin page](https://defomicron.net/projects/civil_footnotes) on the author’s website.
+From the [Releases page](https://github.com/kadamwhite/civil-footnotes/releases) of the plugin’s GitHub repository.
 
 == Upgrade Notice ==
 
