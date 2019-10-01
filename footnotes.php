@@ -2,7 +2,7 @@
 /*
 Plugin Name: Civil Footnotes
 Plugin URI: https://defomicron.net/projects/civil_footnotes
-Version: 1.3
+Version: 1.3.1
 Description: Parses and displays footnotes. Based on <a href="http://elvery.net/drzax/wordpress-footnotes-plugin">WP-Foonotes</a> by <a href="http://elvery.net">Simon Elvery</a>, and the footnote syntax pioneered by <a href="http://daringfireball.net/2005/07/footnotes">John Gruber</a>.
 Author: <a href="https://defomicron.net/colophon">Austin Sweeney</a>
 */
@@ -13,7 +13,7 @@ Author: <a href="https://defomicron.net/colophon">Austin Sweeney</a>
 // Some important constants
 define('WP_FOOTNOTES_OPEN', " ((");
 define('WP_FOOTNOTES_CLOSE', "))");
-define('WP_FOOTNOTES_VERSION', '1.3');
+define('WP_FOOTNOTES_VERSION', '1.3.1');
 
 // Instantiate the class
 $swas_wp_footnotes = new swas_wp_footnotes();
@@ -101,7 +101,7 @@ class swas_wp_footnotes {
 			$id_id = "rf".$id_num."-".$post->ID;
 			$id_href = ( ($use_full_link) ? get_permalink($post->ID) : '' ) . "#fn".$id_num."-".$post->ID;
 			$id_title = str_replace('"', "&quot;", htmlentities(html_entity_decode(strip_tags($value['text']), ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8'));
-			$id_replace = '<sup id="'.$id_id.'"><a href="'.$id_href.'"  title="'.$id_title.'">'.$id_num.'</a></sup>';
+			$id_replace = '<sup id="'.$id_id.'"><a href="'.$id_href.'" title="'.$id_title.'" rel="footnote">'.$id_num.'</a></sup>';
 			if ($display) $data = substr_replace($data, $id_replace, strpos($data,$value[0]),strlen($value[0]));
 			else $data = substr_replace($data, '', strpos($data,$value[0]),strlen($value[0]));
 

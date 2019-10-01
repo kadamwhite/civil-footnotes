@@ -2,8 +2,8 @@
 Contributors: defomicron
 Tags: footnotes, post, posts, notes, reference, formatting, referencing, bibliography, citation
 Requires at least: 2.0
-Tested up to: 3.6
-Stable tag: 1.3
+Tested up to: 3.9.1
+Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,7 +18,7 @@ Civil Footnotes is a WordPress plugin for adding footnotes on your blog. Civil F
 
 There are many solutions for footnotes on WordPress blogs, but Civil Footnotes stands above the rest. Most importantly, the syntax for creating notes is simple and very readable as plain text. The syntax works peacefully alongside Markdown.
 
-The majority of Civil Footnotes’s formatting is taken from Daring Fireball, which first debuted this style of footnotes [almost eight years ago](http://daringfireball.net/2005/07/footnotes).
+The majority of Civil Footnotes’s formatting is taken from Daring Fireball, which first debuted this style of footnotes [in 2005](http://daringfireball.net/2005/07/footnotes).
 
 The key difference is the addition of a `title` attribute to the footnote reference in the text. One need only hover their cursor over the reference number to read the note, eliminating two mouse clicks. For more information, visit [the plugin page](https://defomicron.net/projects/civil_footnotes) on the author’s website.
 
@@ -67,6 +67,10 @@ Because it’s pretty.
 From the [main plugin page](https://defomicron.net/projects/civil_footnotes) on the author’s website.
 
 == Change Log ==
+
+= 1.3.1 =
+
+- Added a ‘footnote’ `rel` class to the footnote links
 
 = 1.3 =
 
