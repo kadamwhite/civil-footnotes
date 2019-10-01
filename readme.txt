@@ -2,8 +2,8 @@
 Contributors: defomicron
 Tags: footnotes, post, posts, notes, reference, formatting, referencing, bibliography, citation
 Requires at least: 2.0
-Tested up to: 3.5.1
-Stable tag: 1.2
+Tested up to: 3.6
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -67,6 +67,11 @@ Because it’s pretty.
 From the [main plugin page](https://defomicron.net/projects/civil_footnotes) on the author’s website.
 
 == Change Log ==
+
+= 1.3 =
+
+- Fixed two PHP errors (thanks to Greg Sullivan)
+- From now on, identical footnotes will be created as two separate footnotes (as they should be)
 
 = 1.2 =
 

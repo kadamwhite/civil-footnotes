@@ -1,10 +1,10 @@
 <?php
 /*
 Plugin Name: Civil Footnotes
-Plugin URI: https://defomicron.net/projects/civil_footnotes/
-Version: 1.2
+Plugin URI: https://defomicron.net/projects/civil_footnotes
+Version: 1.3
 Description: Parses and displays footnotes. Based on <a href="http://elvery.net/drzax/wordpress-footnotes-plugin">WP-Foonotes</a> by <a href="http://elvery.net">Simon Elvery</a>, and the footnote syntax pioneered by <a href="http://daringfireball.net/2005/07/footnotes">John Gruber</a>.
-Author: <a href="https://defomicron.net/colophon/">Austin Sweeney</a>
+Author: <a href="https://defomicron.net/colophon">Austin Sweeney</a>
 */
 
 // If you’d like to edit the output, scroll down to the
@@ -13,7 +13,7 @@ Author: <a href="https://defomicron.net/colophon/">Austin Sweeney</a>
 // Some important constants
 define('WP_FOOTNOTES_OPEN', " ((");
 define('WP_FOOTNOTES_CLOSE', "))");
-define('WP_FOOTNOTES_VERSION', '1.2');
+define('WP_FOOTNOTES_VERSION', '1.3');
 
 // Instantiate the class
 $swas_wp_footnotes = new swas_wp_footnotes();
@@ -77,22 +77,11 @@ class swas_wp_footnotes {
 				$identifiers[$i]['text'] = $identifiers[$i][2];
 			}
 
-			// if we're combining identical notes check if we've already got one like this & record keys
-				for ($j=0; $j<count($footnotes); $j++){
-					if ($footnotes[$j]['text'] == $identifiers[$i]['text']){
-						$identifiers[$i]['use_footnote'] = $j;
-						$footnotes[$j]['identifiers'][] = $i;
-						break;
-					}
-				}
-
-
-
 			if (!isset($identifiers[$i]['use_footnote'])){
 				// Add footnote and record the key
 				$identifiers[$i]['use_footnote'] = count($footnotes);
 				$footnotes[$identifiers[$i]['use_footnote']]['text'] = $identifiers[$i]['text'];
-				$footnotes[$identifiers[$i]['use_footnote']]['symbol'] = $identifiers[$i]['symbol'];
+				$footnotes[$identifiers[$i]['use_footnote']]['symbol'] = ( array_key_exists( 'symbol', $identifiers[$i] ) ) ? $identifiers[$i]['symbol'] : ''; // Bugfix submitted by Greg Sullivan
 				$footnotes[$identifiers[$i]['use_footnote']]['identifiers'][] = $i;
 			}
 		}
@@ -105,6 +94,7 @@ class swas_wp_footnotes {
 		if (is_preview()) $use_full_link = false;
 
 		// Display identifiers
+		$datanote = ''; // Bugfix submitted by Greg Sullivan
 		foreach ($identifiers as $key => $value) {
 
 			$id_num = ($style == 'decimal') ? $value['use_footnote']+$start_number : $this->convert_num($value['use_footnote']+$start_number, $style, count($footnotes));
@@ -124,12 +114,12 @@ class swas_wp_footnotes {
 			$datanote = $datanote.' class="backlink" title="Jump back to footnote '.$id_num.' in the text.">'; // You can change the class or hover text
 			$datanote = $datanote.'&#8617;'; // The backlink character (↩)... &#8626 (↲) is another common one
 			$datanote = $datanote.'</a></p></li>'; // After the footnote
+		}
 
-			}
 
 	// Create the footnotes
 		foreach ($footnotes as $key => $value) {
-			$data = $data.'<hr><ol class="footnotes"'; // Before the footnotes
+			$data = $data.'<hr class="footnotes"><ol class="footnotes"'; // Before the footnotes
 			if ($start_number != '1') $data = $data.' start="'.$start_number.'"';
 			$data = $data.'>';
 			$data = $data.$datanote; // Don't change this
