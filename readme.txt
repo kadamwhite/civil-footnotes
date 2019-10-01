@@ -1,8 +1,9 @@
 === Civil Footnotes ===
-Contributors: defomicron
-Tags: footnotes, post, posts, notes, reference, formatting, referencing, bibliography, citation
+Contributors: defomicron, kadamwhite
+Tags: footnotes, footnote, posts, notes, reference, formatting, referencing, bibliography, citation
 Requires at least: 2.0
-Tested up to: 3.9.1
+Tested up to: 5.2.3
+Requires PHP: 7.0.0
 Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -49,13 +50,13 @@ If you do wish to change the behavior of the plugin, there are two ways in which
 
 2. Your theme may specify the format of footnote marker. The available footnote markers are ‘decimal’, ‘lower-roman’, ‘upper-roman’, ‘lower-alpha’, ‘upper-alpha’, ‘lower-greek’, ‘upper-greek’, and ‘symbol’. To specify which marker is used on your site, you can add a filter function to the `footnotes_style` hook:
 
-<pre><code>
+```
 // functions.php
 function mytheme_use_roman_numeral_footnotes( $style, $formats ) {
   return $formats['lower-roman'];
 }
 apply_filter( 'footnotes_style', 'mytheme_use_roman_numeral_footnotes', 10, 2 );
-</code></pre>
+```
 
 = I found a bug, how can I report it? =
 
@@ -77,7 +78,21 @@ Because it’s pretty.
 
 From the [main plugin page](https://defomicron.net/projects/civil_footnotes) on the author’s website.
 
+== Upgrade Notice ==
+
+= 2.0 =
+Civil Footnotes 2.0 supports modern PHP versions and works with the block editor.
+
+= 1.3.1 =
+This is the last version of Civil Footnotes that supports PHP 5.6.
+
 == Change Log ==
+
+= 2.0.0 =
+
+- Upgraded plugin for compatibility with PHP versions 7 and up
+- Introduced `footnotes_style` filter to select roman numerals, symbols, or other non-numeric footnote styles
+- Modernized & reorganized code for a more efficient footnote rendering experience
 
 = 1.3.1 =
 
