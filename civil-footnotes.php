@@ -1,11 +1,15 @@
 <?php
-/*
-Plugin Name: Civil Footnotes
-Plugin URI: https://defomicron.net/projects/civil_footnotes
-Version: 1.3.1
-Description: Parses and displays footnotes. Based on <a href="http://elvery.net/drzax/wordpress-footnotes-plugin">WP-Foonotes</a> by <a href="http://elvery.net">Simon Elvery</a>, and the footnote syntax pioneered by <a href="http://daringfireball.net/2005/07/footnotes">John Gruber</a>.
-Author: <a href="https://defomicron.net/colophon">Austin Sweeney</a>
-*/
+/**
+ * Plugin Name:  Civil Footnotes
+ * Plugin URI:   https://github.com/kadamwhite/civil-footnotes
+ * Version:      2.0
+ * Description:  Add footnotes to your site using a simple, easy-to-read syntax ((by wrapping footnote content with double-parentheses)).
+ * Author:       K. Adam White, Austin Sweeney
+ * Author URI:   https://www.kadamwhite.com
+ * License:      GPL v2 or later
+ * License URI:  https://www.gnu.org/licenses/gpl-2.0.html
+ * Requires PHP: 7.0
+ */
 
 // We only support PHP 7 and up.
 if ( version_compare( phpversion(), '7.0.0', '<' ) ) {

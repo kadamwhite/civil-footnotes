@@ -1,8 +1,8 @@
 === Civil Footnotes ===
-Contributors: defomicron, kadamwhite
+Contributors: kadamwhite, defomicron
 Tags: footnotes, footnote, posts, notes, reference, formatting, referencing, bibliography, citation
 Requires at least: 2.0
-Tested up to: 5.2.3
+Tested up to: 5.2
 Requires PHP: 7.0.0
 Stable tag: 2.0
 License: GPLv2 or later
