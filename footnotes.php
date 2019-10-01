@@ -2,7 +2,7 @@
 /*
 Plugin Name: Civil Footnotes
 Plugin URI: https://defomicron.net/projects/civil_footnotes/
-Version: 1.1
+Version: 1.2
 Description: Parses and displays footnotes. Based on <a href="http://elvery.net/drzax/wordpress-footnotes-plugin">WP-Foonotes</a> by <a href="http://elvery.net">Simon Elvery</a>, and the footnote syntax pioneered by <a href="http://daringfireball.net/2005/07/footnotes">John Gruber</a>.
 Author: <a href="https://defomicron.net/colophon/">Austin Sweeney</a>
 */
@@ -13,7 +13,7 @@ Author: <a href="https://defomicron.net/colophon/">Austin Sweeney</a>
 // Some important constants
 define('WP_FOOTNOTES_OPEN', " ((");
 define('WP_FOOTNOTES_CLOSE', "))");
-define('WP_FOOTNOTES_VERSION', '1.1');
+define('WP_FOOTNOTES_VERSION', '1.2');
 
 // Instantiate the class
 $swas_wp_footnotes = new swas_wp_footnotes();
@@ -129,7 +129,9 @@ class swas_wp_footnotes {
 
 	// Create the footnotes
 		foreach ($footnotes as $key => $value) {
-			$data = $data.'<hr><ol class="footnotes">'; // Before the footnotes
+			$data = $data.'<hr><ol class="footnotes"'; // Before the footnotes
+			if ($start_number != '1') $data = $data.' start="'.$start_number.'"';
+			$data = $data.'>';
 			$data = $data.$datanote; // Don't change this
 			$data = $data.'</ol>'; // After the footnotes
 

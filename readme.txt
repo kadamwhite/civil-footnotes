@@ -3,13 +3,16 @@ Contributors: defomicron
 Tags: footnotes, post, posts, notes, reference, formatting, referencing, bibliography, citation
 Requires at least: 2.0
 Tested up to: 3.5.1
-Stable tag: 1.1
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Create footnotes using a simple, easy-to-read syntax. Based on ‘WP-Footnotes’, a plugin by Simon Elvery, and Daring Fireball’s footnotes.
 
 == Description ==
+
+# “Civil Footnotes is kickass. Works like a charm.” #  
+—Daniel Ignacio
 
 Civil Footnotes is a WordPress plugin for adding footnotes on your blog. Civil Footnotes parses your posts for notes wrapped in ((double parenthesis)), which are then reformatted as Daring Fireball-style footnotes.
 
@@ -64,6 +67,12 @@ Because it’s pretty.
 From the [main plugin page](https://defomicron.net/projects/civil_footnotes) on the author’s website.
 
 == Change Log ==
+
+= 1.2 =
+
+- Added support for starting footnotes with a different number (e.g. 5)
+- Add `<!--startnum=5-->` or similar anywhere in the post or page to do so
+- This is handy for paginated posts
 
 = 1.1 =
 
