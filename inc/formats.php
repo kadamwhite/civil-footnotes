@@ -46,8 +46,9 @@ function get_style() : string {
  * Convert an integer to the selected format. A theme may opt in to a specific
  * format by hooking into the footnotes_style filter.
  *
- * @param integer $num
- * @return string
+ * @param integer $num The number of the footnote to render.
+ *
+ * @return string The character, number or symbol to use for the footnote.
  */
 function format( int $num ) : string {
 	$selected_style = get_style();
@@ -81,9 +82,10 @@ function format( int $num ) : string {
  *
  * h/t https://stackoverflow.com/a/42177363
  *
- * @param num $num
- * @param array $alphabet
- * @return void
+ * @param int   $num      The number to convert to alphabetical representation.
+ * @param array $alphabet The alphabet of characters to use.
+ *
+ * @return string The rendered alphabetical representation of $num.
  */
 function int_to_alpha( int $num, array $alphabet = [] ): string {
 	if ( $num < 1 ) {
@@ -114,6 +116,7 @@ function int_to_alpha( int $num, array $alphabet = [] ): string {
  * greek alphabet. Corresponds to `list-style-type=lower-greek;`
  *
  * @param int $num Integer to convert.
+ *
  * @return string Lower-case Greek alphabetic representation of number.
  */
 function int_to_lower_greek( int $num ) : string {
@@ -153,6 +156,7 @@ function int_to_lower_greek( int $num ) : string {
  * greek alphabet. Corresponds to `list-style-type=upper-greek;`
  *
  * @param int $num Integer to convert.
+ *
  * @return string Upper-case Greek alphabetic representation of number.
  */
 function int_to_upper_greek( int $num ) : string {
@@ -192,6 +196,7 @@ function int_to_upper_greek( int $num ) : string {
  * of-bounds values.
  *
  * @param int $num The number to convert to roman numeral.
+ *
  * @return string The converted numeral string, or the original integer as a string.
  */
 function int_to_roman( int $num ) : string {
@@ -233,6 +238,7 @@ function int_to_roman( int $num ) : string {
  * input integer if it cannot be properly mapped to a symbol.
  *
  * @param int $num The number to convert to a symbol.
+ *
  * @return void The converted symbol string, or the original integer as a string.
  */
 function int_to_symbol( int $num ) : string {

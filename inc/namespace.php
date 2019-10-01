@@ -33,6 +33,7 @@ function maybe_enqueue_symbols_css() {
  * Render the <sup> tag for a given footnote object.
  *
  * @param array $footnote Footnote associative data array.
+ *
  * @return string Rendered <sup> tag.
  */
 function render_footnote_sup_tag( $footnote ) : string {
@@ -49,6 +50,7 @@ function render_footnote_sup_tag( $footnote ) : string {
  * Render the <li> tag for a given footnote object.
  *
  * @param array $footnote Footnote associative data array.
+ *
  * @return string Rendered <li> tag.
  */
 function render_footnote_li_tag( $footnote ) : string {
@@ -81,7 +83,9 @@ function render_footnote_li_tag( $footnote ) : string {
 /**
  * Searches the text and extracts footnotes.
  * Adds the identifier links and creats footnotes list.
+ *
  * @param string $content The content of the post.
+ *
  * @return string The new content with footnotes generated.
  */
 function process_footnote( $content ) {
@@ -100,7 +104,9 @@ function process_footnote( $content ) {
 		/**
 		 * For each regex match, replace the footnote placeholder with a <sup> tag
 		 * and store footnote information for list generation below.
+		 *
 		 * @param array $match The regex match.
+		 *
 		 * @return string The replacement string.
 		 */
 		function( $match ) use ( &$footnotes, &$footnote_number, $permalink, $post_id ) : string {
@@ -142,6 +148,7 @@ function process_footnote( $content ) {
 		 *
 		 * @param string $li_tags  String to which we will concatenate each <li> tag.
 		 * @param array  $footnote Footnote item from preg_replace_callback, above.
+		 *
 		 * @return string A rendered <li> string for this footnote.
 		 */
 		function( string $li_tags, array $footnote ) : string {
