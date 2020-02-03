@@ -2,7 +2,7 @@
 /**
  * Plugin Name:  Civil Footnotes
  * Plugin URI:   https://github.com/kadamwhite/civil-footnotes
- * Version:      2.0
+ * Version:      2.1
  * Description:  Add footnotes to your site using a simple, easy-to-read syntax ((by wrapping footnote content with double-parentheses)).
  * Author:       K. Adam White, Austin Sweeney
  * Author URI:   https://www.kadamwhite.com

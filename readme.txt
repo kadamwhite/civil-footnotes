@@ -1,10 +1,10 @@
 === Civil Footnotes ===
 Contributors: kadamwhite, defomicron
 Tags: footnotes, footnote, posts, notes, reference, formatting, referencing, bibliography, citation
-Requires at least: 2.0
-Tested up to: 5.2
+Requires at least: 5.0
+Tested up to: 5.3
 Requires PHP: 7.0.0
-Stable tag: 2.0
+Stable tag: 2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -83,6 +83,10 @@ Civil Footnotes 2.0 supports modern PHP versions and works with the block editor
 This is the last version of Civil Footnotes that supports PHP 5.6.
 
 == Change Log ==
+
+= 2.1 =
+
+- Fixed a bug in v2.0 that prevented HTML from rendering within footnote content.
 
 = 2.0.0 =
 
