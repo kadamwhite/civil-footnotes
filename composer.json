@@ -26,7 +26,7 @@
 		"wp-coding-standards/wpcs": "^2.1.1"
 	},
 	"scripts": {
-		"test": "vendor/bin/phpunit tests/*",
+		"test": "vendor/bin/phpunit",
 		"lint": "vendor/bin/phpcs",
 		"lint:fix": "vendor/bin/phpcbf",
 		"post-install-cmd": "\"vendor/bin/phpcs\" --config-set installed_paths vendor/wp-coding-standards/wpcs",
