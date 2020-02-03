@@ -1,0 +1,16 @@
+/.git
+/.github
+/.vscode
+/.wordpress-org
+/node_modules
+/svn
+/tests
+/vendor
+
+.editorconfig
+.gitignore
+.phpcs.xml.dist
+.phpunit.result.cache
+.travis.yml
+composer.lock
+phpunit.xml
