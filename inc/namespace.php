@@ -49,7 +49,15 @@ function render_footnote_sup_tag( $footnote ) : string {
 /**
  * Render the <li> tag for a given footnote object.
  *
- * @param array $footnote Footnote associative data array.
+ * @param array $footnote {
+ *     @type string $content  Footnote HTML content.
+ *     @type string $fn_id    Unique HTML ID of the footnote.
+ *     @type string $ref_id   Unique HTML ID of the footnote ref.
+ *     @type string $fn_href  Unique HTML href of the footnote.
+ *     @type string $ref_href Unique HTML href of the footnote ref.
+ *     @type int    $number   Number of the footnote being rendered.
+ *     @type string $symbol   Symbol to use for the footnote, if using symbols.
+ * }
  *
  * @return string Rendered <li> tag.
  */
@@ -68,7 +76,7 @@ function render_footnote_li_tag( $footnote ) : string {
 		// %2$s: Maybe a data-symbol attribute, maybe the empty string.
 		$using_symbols ? sprintf( 'data-symbol="%s"', esc_attr( $footnote['symbol'] ) ) : '',
 		// %3$s: Footnote content.
-		esc_html( $footnote['content'] ),
+		wp_kses_post( $footnote['content'] ),
 		// %4$s: HTML href attribute pointing back to the footnote <sup> tag.
 		esc_html( $footnote['ref_href'] ),
 		// %5$s: User-facing messaging for the return link.

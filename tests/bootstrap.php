@@ -8,4 +8,5 @@ WP_Mock::setUsePatchwork( true );
 WP_Mock::bootstrap();
 
 // Load in our custom files.
+require_once dirname( __DIR__ ) . '/inc/namespace.php';
 require_once dirname( __DIR__ ) . '/inc/formats.php';
