@@ -6,6 +6,7 @@
 	<file>.</file>
 	<exclude-pattern>/vendor/</exclude-pattern>
 	<exclude-pattern>/node_modules/</exclude-pattern>
+	<exclude-pattern>/svn/</exclude-pattern>
 
 	<!-- How to scan -->
 	<!-- Usage instructions: https://github.com/squizlabs/PHP_CodeSniffer/wiki/Usage -->
@@ -24,5 +25,8 @@
 		<exclude name="Generic.Commenting" />
 		<exclude name="Squiz.Commenting" />
 		<exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores" />
+		<exclude name="Generic.Arrays.DisallowShortArraySyntax" />
 	</rule>
+
+	<rule ref="Generic.Arrays.DisallowLongArraySyntax" />
 </ruleset>
