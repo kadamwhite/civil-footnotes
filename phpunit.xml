@@ -5,7 +5,7 @@
 >
 	<testsuites>
 		<testsuite name="civil-footnotes">
-			<directory prefix="test-" suffix=".php">tests</directory>
+			<directory prefix="class-test-" suffix=".php">tests</directory>
 		</testsuite>
 	</testsuites>
 
