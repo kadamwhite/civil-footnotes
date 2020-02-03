@@ -1,8 +1,6 @@
 <?php
 declare(strict_types=1);
 
-require_once dirname( __DIR__ ) . '/inc/formats.php';
-
 use PHPUnit\Framework\TestCase;
 use Civil_Footnotes\Formats;
 
