@@ -41,7 +41,7 @@ function render_footnote_sup_tag( $footnote ) : string {
 		'<sup id="%1$s"><a href="%2$s" title="%3$s" rel="footnote">%4$s</a></sup>',
 		esc_attr( $footnote['ref_id'] ),
 		esc_attr( $footnote['fn_href'] ),
-		esc_attr( $footnote['content'] ),
+		wp_strip_all_tags( $footnote['content'] ),
 		esc_html( $footnote['symbol'] )
 	);
 }
