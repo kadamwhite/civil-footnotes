@@ -8,17 +8,17 @@
  * Author URI:   https://www.kadamwhite.com
  * License:      GPL v2 or later
  * License URI:  https://www.gnu.org/licenses/gpl-2.0.html
- * Requires PHP: 7.0
+ * Requires PHP: 8.2
  */
 
 // We only support PHP 7 and up.
-if ( version_compare( phpversion(), '7.0.0', '<' ) ) {
+if ( version_compare( phpversion(), '8.0.0', '<' ) ) {
 	add_action(
 		'admin_notices',
 		function() {
 			$php_version_warning = sprintf(
 				/* translators: Error message explaining PHP version is too low. %s: Current PHP version. */
-				__( 'Civil Footnotes requires PHP 7 or higher; you are using %s. Please contact your host to upgrade your PHP version, or downgrade to Civil Footnotes version 1.3.1.' ),
+				__( 'Civil Footnotes requires PHP 8 or higher; you are using %s. Please contact your host to upgrade your PHP version, or downgrade to Civil Footnotes version 1.3.1.' ),
 				phpversion()
 			);
 			$deactivation_notice = __( 'The plugin has been deactivated.', 'civil-footnotes' );
