@@ -12,15 +12,12 @@
 	<arg name="colors"/>
 	<arg name="extensions" value="php"/>
 
-	<!-- Rules: WordPress Coding Standards -->
-	<!-- https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards -->
-	<!-- https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/wiki/Customizable-sniff-properties -->
-	<config name="minimum_supported_wp_version" value="4.8"/>
 	<rule ref="WordPress">
 		<exclude name="Generic.Commenting" />
 		<exclude name="Squiz.Commenting" />
 		<exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores" />
 		<exclude name="Generic.Arrays.DisallowShortArraySyntax" />
+		<exclude name="Universal.Arrays.DisallowShortArraySyntax" />
 	</rule>
 
 	<rule ref="Generic.Arrays.DisallowLongArraySyntax" />

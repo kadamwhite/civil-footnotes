@@ -22,12 +22,10 @@
 		"phpunit/phpunit": "^9.6",
 		"wp-coding-standards/wpcs": "^3.0"
 	},
-	"scripts": {
-		"test": "vendor/bin/phpunit",
-		"lint": "vendor/bin/phpcs",
-		"lint:fix": "vendor/bin/phpcbf",
-		"post-install-cmd": "\"vendor/bin/phpcs\" --config-set installed_paths vendor/wp-coding-standards/wpcs",
-		"post-update-cmd" : "\"vendor/bin/phpcs\" --config-set installed_paths vendor/wp-coding-standards/wpcs"
+	"scripts": { 
+		"test": "phpunit",
+		"lint": "phpcs",
+		"lint:fix": "phpcbf"
 	},
 	"config": {
 		"allow-plugins": {
