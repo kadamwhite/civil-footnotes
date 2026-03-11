@@ -5,12 +5,12 @@
 	"license": "GPL2+",
 	"authors": [
 		{
-			"name": "Austin Sweeney",
-			"homepage": "https://defomicron.net"
-		},
-		{
 			"name": "K Adam White",
 			"homepage": "https://kadamwhite.com"
+		},
+		{
+			"name": "Austin Sweeney",
+			"homepage": "https://defomicron.net"
 		}
 	],
 	"require": {
