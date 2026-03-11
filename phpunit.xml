@@ -9,9 +9,9 @@
 		</testsuite>
 	</testsuites>
 
-	<filter>
-		<whitelist>
+	<coverage>
+		<include>
 			<directory>./inc</directory>
-		</whitelist>
-	</filter>
+		</include>
+	</coverage>
 </phpunit>

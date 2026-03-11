@@ -18,8 +18,8 @@
 		"php": "^8.2"
 	},
 	"require-dev": {
-		"10up/wp_mock": "^0.4.2",
-		"phpunit/phpunit": "^8",
+		"10up/wp_mock": "^1.1.0",
+		"phpunit/phpunit": "^9.6",
 		"wp-coding-standards/wpcs": "^3.0"
 	},
 	"scripts": {
