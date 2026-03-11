@@ -11,7 +11,7 @@ namespace Civil_Footnotes\Formats;
  *
  * @return array Styles mapping.
  */
-function styles() : array {
+function styles(): array {
 	return [
 		'decimal'     => 'decimal',
 		'lower-roman' => 'lower-roman',
@@ -30,7 +30,7 @@ function styles() : array {
  *
  * @return string
  */
-function get_style() : string {
+function get_style(): string {
 	/**
 	 * Filters the style to be used when rendering footnote markers.
 	 *
@@ -50,7 +50,7 @@ function get_style() : string {
  *
  * @return string The character, number or symbol to use for the footnote.
  */
-function format( int $num ) : string {
+function format( int $num ): string {
 	$selected_style = get_style();
 
 	switch ( $selected_style ) {
@@ -119,7 +119,7 @@ function int_to_alpha( int $num, array $alphabet = [] ): string {
  *
  * @return string Lower-case Greek alphabetic representation of number.
  */
-function int_to_lower_greek( int $num ) : string {
+function int_to_lower_greek( int $num ): string {
 	return int_to_alpha(
 		$num,
 		[
@@ -159,7 +159,7 @@ function int_to_lower_greek( int $num ) : string {
  *
  * @return string Upper-case Greek alphabetic representation of number.
  */
-function int_to_upper_greek( int $num ) : string {
+function int_to_upper_greek( int $num ): string {
 	return int_to_alpha(
 		$num,
 		[
@@ -199,7 +199,7 @@ function int_to_upper_greek( int $num ) : string {
  *
  * @return string The converted numeral string, or the original integer as a string.
  */
-function int_to_roman( int $num ) : string {
+function int_to_roman( int $num ): string {
 	$result = '';
 
 	// Define the mapping of Roman numerals to corresponding integers.
@@ -241,7 +241,7 @@ function int_to_roman( int $num ) : string {
  *
  * @return void The converted symbol string, or the original integer as a string.
  */
-function int_to_symbol( int $num ) : string {
+function int_to_symbol( int $num ): string {
 	// Ordering from Wikipedia's list of common footnote symbols, with
 	// additions for card suits & other unique characters that look really neat.
 	$symbols = [

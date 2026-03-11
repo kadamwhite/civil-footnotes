@@ -1,17 +1,18 @@
 <?php
 declare(strict_types=1);
+// phpcs:disable Universal.Files.SeparateFunctionsFromOO
 
 use PHPUnit\Framework\TestCase;
 use Civil_Footnotes\Formats;
 
 if ( ! function_exists( 'apply_filters' ) ) {
-	function apply_filters( $filter_name, $default, $arg1 ) {
-		return $default;
+	function apply_filters( $filter_name, $value ) {
+		return $value;
 	}
 }
 
 final class Test_Formats extends TestCase {
-	public function testIntToAlpha() : void {
+	public function testIntToAlpha(): void {
 		$this->assertEquals( Formats\int_to_alpha( 1 ), 'A' );
 		$this->assertEquals( Formats\int_to_alpha( 5 ), 'E' );
 		$this->assertEquals( Formats\int_to_alpha( 13 ), 'M' );
@@ -22,21 +23,21 @@ final class Test_Formats extends TestCase {
 		$this->assertEquals( Formats\int_to_alpha( -1 ), '-1' );
 	}
 
-	public function testIntToLowerGreek() : void {
+	public function testIntToLowerGreek(): void {
 		$this->assertEquals( Formats\int_to_lower_greek( 1 ), '&alpha;' );
 		$this->assertEquals( Formats\int_to_lower_greek( 24 ), '&omega;' );
 		$this->assertEquals( Formats\int_to_lower_greek( 25 ), '&alpha;&alpha;' );
 		$this->assertEquals( Formats\int_to_lower_greek( 600 ), '&omega;&omega;' );
 	}
 
-	public function testIntToUpperGreek() : void {
+	public function testIntToUpperGreek(): void {
 		$this->assertEquals( Formats\int_to_upper_greek( 1 ), '&Alpha;' );
 		$this->assertEquals( Formats\int_to_upper_greek( 24 ), '&Omega;' );
 		$this->assertEquals( Formats\int_to_upper_greek( 25 ), '&Alpha;&Alpha;' );
 		$this->assertEquals( Formats\int_to_upper_greek( 600 ), '&Omega;&Omega;' );
 	}
 
-	public function testIntToRoman() : void {
+	public function testIntToRoman(): void {
 		$this->assertEquals( Formats\int_to_roman( 1 ), 'I' );
 		$this->assertEquals( Formats\int_to_roman( 2 ), 'II' );
 		$this->assertEquals( Formats\int_to_roman( 3 ), 'III' );
@@ -65,7 +66,7 @@ final class Test_Formats extends TestCase {
 		$this->assertEquals( Formats\int_to_roman( 40000 ), '40000' );
 	}
 
-	public function testIntToSymbol() : void {
+	public function testIntToSymbol(): void {
 		$this->assertEquals( Formats\int_to_symbol( 1 ), '*' );
 		$this->assertEquals( Formats\int_to_symbol( 2 ), '&dagger;' );
 		$this->assertEquals( Formats\int_to_symbol( 3 ), '&Dagger;' );

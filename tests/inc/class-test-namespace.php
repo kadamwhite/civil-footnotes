@@ -1,11 +1,8 @@
 <?php
 declare(strict_types=1);
 
-use Civil_Footnotes;
-use WP_Mock;
-
 final class Test_Namespace extends WP_Mock\Tools\TestCase {
-	public function testRenderFootnoteTag() : void {
+	public function testRenderFootnoteTag(): void {
 		$footnote = [
 			'content'  => '"keikaku" means "plan"',
 			'fn_id'    => 'fn1-1',
@@ -26,7 +23,7 @@ final class Test_Namespace extends WP_Mock\Tools\TestCase {
 		);
 	}
 
-	public function testRenderFootnoteTagWithHTML() : void {
+	public function testRenderFootnoteTagWithHTML(): void {
 		$footnote = [
 			'content'  => 'This is <em>HTML Content</em> for a <em>Digital World!</em>',
 			'fn_id'    => 'fn1-1',
