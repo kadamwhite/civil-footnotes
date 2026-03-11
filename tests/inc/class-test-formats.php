@@ -5,8 +5,8 @@ use PHPUnit\Framework\TestCase;
 use Civil_Footnotes\Formats;
 
 if ( ! function_exists( 'apply_filters' ) ) {
-	function apply_filters( $filter_name, $default, $arg1 ) {
-		return $default;
+	function apply_filters( $filter_name, $value, $arg1 ) {
+		return $value;
 	}
 }
 

@@ -117,10 +117,10 @@ function process_footnote( $content ) {
 		 *
 		 * @return string The replacement string.
 		 */
-		function ( $match ) use ( &$footnotes, &$footnote_number, $permalink, $post_id ): string {
+		function ( $re_match ) use ( &$footnotes, &$footnote_number, $permalink, $post_id ): string {
 			// Store footnote content so we can generate the list at the end of the post.
 			$footnote = [
-				'content' => $match[1],
+				'content' => $re_match[1],
 				'fn_id'   => sprintf( 'fn%d-%d', $footnote_number, $post_id ),
 				'ref_id'  => sprintf( 'rf%d-%d', $footnote_number, $post_id ),
 				'number'  => $footnote_number,
