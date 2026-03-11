@@ -1,9 +1,6 @@
 <?php
 declare(strict_types=1);
 
-use Civil_Footnotes;
-use WP_Mock;
-
 final class Test_Namespace extends WP_Mock\Tools\TestCase {
 	public function testRenderFootnoteTag(): void {
 		$footnote = [
