@@ -23,7 +23,7 @@ function maybe_enqueue_symbols_css() {
 	// Enqueue the stylesheet that adds support for footnote symbol markers.
 	wp_enqueue_style(
 		'civil-footnotes',
-		plugins_url( 'assets/footnotes.css', dirname( __FILE__ ) ),
+		plugins_url( 'assets/footnotes.css', __DIR__ ),
 		[],
 		CIVIL_FOOTNOTES_VERSION
 	);
@@ -36,7 +36,7 @@ function maybe_enqueue_symbols_css() {
  *
  * @return string Rendered <sup> tag.
  */
-function render_footnote_sup_tag( $footnote ) : string {
+function render_footnote_sup_tag( $footnote ): string {
 	return sprintf(
 		'<sup id="%1$s"><a href="%2$s" title="%3$s" rel="footnote">%4$s</a></sup>',
 		esc_attr( $footnote['ref_id'] ),
@@ -61,7 +61,7 @@ function render_footnote_sup_tag( $footnote ) : string {
  *
  * @return string Rendered <li> tag.
  */
-function render_footnote_li_tag( $footnote ) : string {
+function render_footnote_li_tag( $footnote ): string {
 	// If we are using symbols, we want to add a data-attribute to each <li>
 	// which can be used to control the marker rendered :before the element.
 	$using_symbols = 'symbol' === Formats\get_style();
@@ -117,7 +117,7 @@ function process_footnote( $content ) {
 		 *
 		 * @return string The replacement string.
 		 */
-		function( $match ) use ( &$footnotes, &$footnote_number, $permalink, $post_id ) : string {
+		function ( $match ) use ( &$footnotes, &$footnote_number, $permalink, $post_id ): string {
 			// Store footnote content so we can generate the list at the end of the post.
 			$footnote = [
 				'content' => $match[1],
@@ -159,7 +159,7 @@ function process_footnote( $content ) {
 		 *
 		 * @return string A rendered <li> string for this footnote.
 		 */
-		function( string $li_tags, array $footnote ) : string {
+		function ( string $li_tags, array $footnote ): string {
 			return $li_tags . render_footnote_li_tag( $footnote );
 		},
 		''
