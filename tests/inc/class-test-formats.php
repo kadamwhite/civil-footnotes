@@ -1,11 +1,12 @@
 <?php
 declare(strict_types=1);
+// phpcs:disable Universal.Files.SeparateFunctionsFromOO
 
 use PHPUnit\Framework\TestCase;
 use Civil_Footnotes\Formats;
 
 if ( ! function_exists( 'apply_filters' ) ) {
-	function apply_filters( $filter_name, $value, $arg1 ) {
+	function apply_filters( $filter_name, $value ) {
 		return $value;
 	}
 }
