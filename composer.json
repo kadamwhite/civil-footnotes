@@ -20,6 +20,7 @@
 	"require-dev": {
 		"10up/wp_mock": "^1.1.0",
 		"phpunit/phpunit": "^9.6",
+        "staabm/annotate-pull-request-from-checkstyle": "^1.8",
 		"wp-coding-standards/wpcs": "^3.0"
 	},
 	"scripts": { 
